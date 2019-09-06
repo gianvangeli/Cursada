@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : Clase.cpp
-// Author      : 
+// Author      : Gian Lukas
 // Version     :
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
@@ -33,8 +33,8 @@ int ordenarArrayInt(int array[],int limite);
 
 int main()
 {
-	int edadesEmpleados[QTY_EMPLEADOS] =  {22,1,44,2,1};
-		int cantidadDatos = 5 ;
+	    int edadesEmpleados[QTY_EMPLEADOS] =  {22,1,44,2,1,88};
+		int cantidadDatos = 6 ;
 		int test;
 		//cantidadDatos = getArrayInt(edadesEmpleados,QTY_EMPLEADOS,"Edad?\n","Error\n",0,200,2);
 			if(cantidadDatos > 0)
@@ -55,7 +55,7 @@ int main()
 			return EXIT_SUCCESS;
 		}
 
-		int initArrayInt(int array[],int limite,int valor )
+		int ordenarArrayInt(int array[],int limite,int valor )
 		{
 			int i;
 			int retorno = -1;
@@ -141,7 +141,7 @@ int main()
 							i++;
 							limite--;
 						}
-						printf("Continuar? (s/n)");
+						printf ("Continuar? (s/n)");
 						__fpurge(stdin);
 						scanf("%c",&respuesta);
 					}while(respuesta == 's' && limite > 0);
@@ -166,7 +166,7 @@ int main()
 					{
 						if(array[i]>maximo)
 						{
-							maximo = array[i];
+							maximo= array[i];
 							posMaximo=i;
 						}
 					}
@@ -175,7 +175,7 @@ int main()
 				return retorno;
 			}
 
-			int ordenarArrayInt(int array[],int limite)
+			int initArrayInt(int array[],int limite)
 			{
 				int i;
 				int retorno = -1;
@@ -193,4 +193,82 @@ int main()
 				}
 				return retorno;
 			}
+
+
+			   int ordenarArrayInt(int array[],int limite )
+			{
+				int i;
+				int flagSwap;
+				int retorno = -1;
+				int bufferInt;
+				if(array != NULL && limite > 0)
+				{
+				retorno = 0;
+				do
+			{
+			flagSwap =0;
+			for (i=0, i <limite-1; i++)
+			{
+			if (array [i] > array [i+1])
+			{
+			flagSwap =1;
+			bufferInt = array[i];
+			array[i]> array [i+1];
+		     çarray [i+1]= bufferInt;
+										}
+									}
+
+
+
+							}while(flagSwap)
+							return retorno;
+
+							}
+
+
+
+
+
+			char buffer[50];
+			fgets(buffer,sizeof(buffer),stdin);
+
+
+
+
+			int getString(	char*pResultado,
+							char *pMensaje,
+							char *pMensajeError,
+						    int minimo,
+							int maximo,
+							int reintentos)
+			{
+				int retorno = -1;
+				char buffer[4096];
+				do
+				{
+					printf("%s",pMensaje);
+					__fpurge (stdin);
+					fgets (buffer, sizeof (buffer), stdin);
+					buffer [strlen(buffer)-1]= '\0';
+					if(strlen(buffer)>=maximo && strlen (buffer)<=maximo)
+					{
+						*pResultado = *buffer;
+						strncpy (pResultado , buffer, maximo+1);
+						retorno =0;
+						break;
+					}
+
+					printf ("%s",pMensajeError);
+					reintentos --;
+				}while (reintentos >=0);
+				return retorno;
+
+
+				}
+
+
+
+
+
+
 
